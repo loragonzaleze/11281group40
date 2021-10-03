@@ -1,0 +1,3 @@
+[submodule "ecoflo_FrontEnd"]
+	path = ecoflo_FrontEnd
+	url = https://github.com/loragonzaleze/11281group40.git
