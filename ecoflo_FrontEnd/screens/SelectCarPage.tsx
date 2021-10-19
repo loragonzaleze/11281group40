@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Dimensions} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select'
+import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableHighlight, Alert} from 'react-native';
 import type {PickerItem} from 'react-native-woodpicker'
 import {Picker} from 'react-native-woodpicker'
 import axios from 'axios'
@@ -15,29 +14,6 @@ import LoginPage from './LoginPage';
 import EmissionData from '../datasets/FuelEmissions.json';
 const windowWidth = Dimensions.get('screen').width
 
-const styles2 = StyleSheet.create({
-    picker: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 25,
-        borderRadius: 15,
-        width: windowWidth / 1.25,
-        height: 50,
-        paddingHorizontal: 30,
-        textAlignVertical: 'center'
-    },
-
-    spacer: {
-        backgroundColor: '#03fc56',
-        height: 20
-    },
-
-    header: {
-        fontSize: 20
-    }
-  
-  });
 
 
 const SelectCarPage = () => {
@@ -134,20 +110,20 @@ const SelectCarPage = () => {
         }
     }
 
-   
 
-
-
+    function ConfirmMakeAndModel() {
+        Alert.alert('Button Pressed! Implementation Pending!');
+    }
 
     return (
         <View style={styles.container}>
-            <Text style={styles2.header}>Select Make and Model of your Car</Text>
+            <Text style={styles.header}>Select Make and Model of your Car</Text>
             
-            <View style={styles2.spacer}/>
+            <View style={styles.spacer}/>
 
 
             <Picker
-                style={styles2.picker}
+                style={styles.picker}
                 item={pickedData}
                 items={data}
                 onItemChange={setPickedData}
@@ -155,7 +131,7 @@ const SelectCarPage = () => {
                 placeholder="Select Make"
                 isNullable
             />
-            <View style={styles2.spacer}/>
+            <View style={styles.spacer}/>
 
 
             {
@@ -163,7 +139,7 @@ const SelectCarPage = () => {
             }
             
             <Picker
-                style={styles2.picker}
+                style={styles.picker}
                 item={pickedData2}
                 items={data2}
                 onItemChange={setPickedData2}
@@ -171,6 +147,11 @@ const SelectCarPage = () => {
                 placeholder="Select Model"
                 isNullable
             />
+            <View style={styles.spacer}/>
+
+            <TouchableHighlight style={styles.button}>
+            <Button title="CONFIRM" onPress={ConfirmMakeAndModel} />
+            </TouchableHighlight>
 
 
         </View>
