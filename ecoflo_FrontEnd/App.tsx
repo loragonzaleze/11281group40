@@ -69,5 +69,7 @@ const styles = StyleSheet.create({
 
   loginButton: {
     backgroundColor: '#fff'
-  }
+  },
+
+  
 });

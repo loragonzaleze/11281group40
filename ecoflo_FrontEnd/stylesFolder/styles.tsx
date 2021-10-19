@@ -22,7 +22,35 @@ const styles = StyleSheet.create({
   
     loginButton: {
       backgroundColor: '#fff'
-    }
+    },
+
+    picker: {
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 25,
+      borderRadius: 15,
+      width: windowWidth / 1.25,
+      height: 50,
+      paddingHorizontal: 30,
+      textAlignVertical: 'center'
+  },
+
+  spacer: {
+      backgroundColor: '#03fc56',
+      height: 20
+  },
+
+  header: {
+      fontSize: 20
+  },
+
+  button: {
+      backgroundColor: '#5dd',
+      borderRadius: 8
+      
+  }
+
   });
 
 export default styles;
