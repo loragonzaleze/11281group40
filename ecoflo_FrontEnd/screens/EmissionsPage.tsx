@@ -9,25 +9,25 @@ import { RootStackParamList } from '../App';
 import styles from "../stylesFolder/styles"
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import UserProfilePage from './UserProfilePage'
+import LoginPage from './LoginPage';
+import StepTrackerPage from './StepTrackerPage'
 import LeaderboardPage from './LeaderboardPage';
-import EmissionsPage from './EmissionsPage';
+import SelectCarPage from './SelectCarPage';
 
 
 const Tab = createBottomTabNavigator();
-const HomePage = ({route, navigation} : any) => {
+const EmissionsPage = ({route, navigation} : any) => {
     return (
             <Tab.Navigator>
-                <Tab.Screen name = {global.loggedInUser} component={UserProfilePage}></Tab.Screen>
-                <Tab.Screen options={{headerShown: false}} name = "Track Emissions" component={EmissionsPage}></Tab.Screen>
-                <Tab.Screen name = "Leaderboard" component={LeaderboardPage}></Tab.Screen>
+                <Tab.Screen name = "Track Steps" component={StepTrackerPage}></Tab.Screen>
+                <Tab.Screen name = "Track CO2 Emissions" component={SelectCarPage}></Tab.Screen>
             </Tab.Navigator>
     )
 }
 
-HomePage.navigationOptions = {
+EmissionsPage.navigationOptions = {
     headerLeft: () => {
         return null;
     }
 }
-export default HomePage;
+export default EmissionsPage;
