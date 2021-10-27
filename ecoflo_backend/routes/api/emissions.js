@@ -27,7 +27,7 @@ router.get('/pastweek', (req, res) => {
             {
                 'type' : 'User emissions',
                 'success' : true,
-                'emissons' : emissions
+                'emissions' : emissions
             })
         }
     })

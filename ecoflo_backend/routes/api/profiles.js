@@ -35,11 +35,18 @@ router.post('/picture', (req, res) => {
     var newPicture = {'profilePicture' : queriedPicture}
 
     Profile.findOneAndUpdate(query, newPicture, {upsert: true}, (error, user) => {
-        if(!user){
+        if(error){
+            res.send(
+            {
+                'type':'Error occured creating new account',
+                "success" : true
+            })
+        }
+        else if(!user){
             res.send(
                 {
-                'type' : 'Encountered Error updating picture',
-                'success' : false
+                'type' : 'Created new account',
+                'success' : true
             })
         }
         else{
