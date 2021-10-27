@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const profiles = require('./routes/api/profiles')
 const users = require('./routes/api/users')
+const emissions = require('./routes/api/emissions')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use('/api/login', users)
 app.use('/api/user', profiles)
+app.use('/api/emissions', emissions)
 
 const port = process.env.PORT || 5001;
 

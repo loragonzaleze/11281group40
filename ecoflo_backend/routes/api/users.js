@@ -25,13 +25,10 @@ router.get('/getLoginToken', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-   // console.log("body: ")
-   // console.log(res)
     var queriedUsername = req.body.username
     var queriedPassword = req.body.password
     var existingUser = req.body.existingUser
 
-    //console.log("existing user: " + queriedUsername)
     User.findOne({username:queriedUsername}, (error, user) => {
         if(error){
             return false
@@ -82,14 +79,13 @@ router.post('/', (req, res) => {
                     username: queriedUsername,
                     password: hashedPassword
                 })
-        
-                newUser.save().then(user => 
-                    res.json({
+                newUser.save().then(user => {
+                   res.json({
                         success:true,
                         type:"Created new user"
                     })
-
-                 )
+                    }
+                )
                 .catch(error => {
                     res.send({
                         success:false,
