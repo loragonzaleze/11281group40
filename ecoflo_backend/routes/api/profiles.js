@@ -3,46 +3,30 @@ const router = express.Router()
 
 const Profile = require('../../models/profile')
 
+router.get('/picture', (req, res) => {
+    var queriedUsername = req.query.username
+    var query = {'username' : queriedUsername}
 
-router.get('/emissions', (req, res) => {
-    var queriedUsername = req.body.username
-    Profile.findOne({'username' : queriedUsername}, (error, user) => {
+    Profile.findOne(query,(error, user) =>{
         if(!user){
             res.send(
                 {
-                    'type' : 'Unknown user',
+                    'type' : 'Encountered Error retrieving picture, set username to search for',
                     'success' : false
                 })
         }
         else{
             res.send({
-                'type' : 'User Emissions',
-                'success' : true,
-                'emissions' : user.emissions
+                'type':'User profile picture',
+                'success':true,
+                'profilePicture':user.profilePicture
             })
         }
-    })
- 
-})
-
-
-router.post('/emissions', (req, res) => {
-    var queriedUsername = req.body.username
-    var queriedEmissions = req.body.emissions
-    var query = {'username': queriedUsername}
-    var newEmissions = {$inc: {'emissions': queriedEmissions}}
-    Profile.findOneAndUpdate(query, newEmissions, {upsert: true}, (error, user) => {
-        if(error){
-             res.send({'type' : 'Encountered Error finding user',
-                       'success' : false})
-        }
-        else{
-            res.send({'type': 'Sucessfully updated user',
-                      'success': true})
-        }
 
     })
+
 })
+
 
 router.post('/picture', (req, res) => {
     var queriedUsername = req.body.username
@@ -52,13 +36,23 @@ router.post('/picture', (req, res) => {
 
     Profile.findOneAndUpdate(query, newPicture, {upsert: true}, (error, user) => {
         if(error){
-            res.send({'type' : 'Encountered Error updating picture',
-                       'success' : false})
+            res.send(
+            {
+                'type':'Error occured creating new account',
+                "success" : true
+            })
+        }
+        else if(!user){
+            res.send(
+                {
+                'type' : 'Created new account',
+                'success' : true
+            })
         }
         else{
             res.send({
                 'type': 'Sucessfully updated picture',
-                      'success': true
+                'success': true
             })
         }
     })
