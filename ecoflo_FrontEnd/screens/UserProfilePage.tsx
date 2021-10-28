@@ -19,7 +19,9 @@ const UserProfilePage = () => {
     return (
         <View style={styles.container}>
             <Text>This will be the  user profile screen</Text>
-            <Text>{global.loggedInUser}</Text>
+            <Text>{
+            //@ts-ignore
+            global.loggedInUser}</Text>
         </View>
     )
 }

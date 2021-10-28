@@ -5,7 +5,7 @@ const windowWidth = Dimensions.get('screen').width
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#03fc56',
+      backgroundColor: '#C13214',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
       paddingVertical: 12,
     },
   
+
     loginButton: {
       backgroundColor: '#fff'
     },
@@ -53,9 +54,8 @@ const styles = StyleSheet.create({
   button: {
       backgroundColor: '#5dd',
       borderRadius: 8
-      
   }
 
-  });
+});
 
 export default styles;
