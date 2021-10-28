@@ -46,6 +46,11 @@ const styles = StyleSheet.create({
       fontSize: 20
   },
 
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+
   button: {
       backgroundColor: '#5dd',
       borderRadius: 8
