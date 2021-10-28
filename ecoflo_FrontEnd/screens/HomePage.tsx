@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {useState} from 'react'
 
 import { StyleSheet, Text, View, TextInput, Button, Dimensions} from 'react-native';
@@ -18,7 +18,12 @@ const Tab = createBottomTabNavigator();
 const HomePage = ({route, navigation} : any) => {
     return (
             <Tab.Navigator>
-                <Tab.Screen name = {global.loggedInUser} component={UserProfilePage}></Tab.Screen>
+                <Tab.Screen 
+                    name = {global.loggedInUser} 
+                    component={UserProfilePage}
+                    options={{headerShown: false}}
+                    
+                ></Tab.Screen>
                 <Tab.Screen options={{headerShown: false}} name = "Track Emissions" component={EmissionsPage}></Tab.Screen>
                 <Tab.Screen name = "Leaderboard" component={LeaderboardPage}></Tab.Screen>
             </Tab.Navigator>
