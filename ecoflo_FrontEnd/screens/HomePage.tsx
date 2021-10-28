@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import UserProfilePage from './UserProfilePage'
 import LeaderboardPage from './LeaderboardPage';
 import EmissionsPage from './EmissionsPage';
+import Map from './Map';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,7 @@ const HomePage = ({route, navigation} : any) => {
                 <Tab.Screen name = {global.loggedInUser} component={UserProfilePage}></Tab.Screen>
                 <Tab.Screen options={{headerShown: false}} name = "Track Emissions" component={EmissionsPage}></Tab.Screen>
                 <Tab.Screen name = "Leaderboard" component={LeaderboardPage}></Tab.Screen>
+                <Tab.Screen name  = "Map" component={Map}></Tab.Screen>
             </Tab.Navigator>
     )
 }
