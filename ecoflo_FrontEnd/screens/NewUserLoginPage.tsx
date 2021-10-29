@@ -25,46 +25,51 @@ const NewUserLoginPage = ({navigation} : any) => {
             setDifferentPasswords(true)
             return
         }
-        global.loggedInUser = "Not logged In"
-        axios.post('https://loginapitest.herokuapp.com/api/login/', {
-          "username":username,
-          "password":password,
-          "existingUser":false
-        }).then(async (res) => {
-            console.log("CALLED API")
-            console.log(res)
-            if(!res.data.success){
-                setAPICall(false)
+        axios.all([
+            axios.post('https://loginapitest.herokuapp.com/api/login/', 
+            { 
+                "username":username,
+                "password":password,
+                "existingUser":false
+            }),
+            axios.post('https://loginapitest.herokuapp.com/api/user/picture/', 
+            { 
+                "username":username
+            })
+         
 
-                if(res.data.type == 'Username taken'){
-                    setLoginStatus(false)
-                    setDifferentPasswords(false)
+        ]).then(axios.spread(async (res, res2) => {
+                global.loggedInUser = "Not logged In"
+                 if(!res.data.success){
+                    setAPICall(false)
+
+                    if(res.data.type == 'Username taken'){
+                        setLoginStatus(false)
+                        setDifferentPasswords(false)
+                    }
                 }
+                else{
+                    console.log("success !")
                 
-            }
-            else{
-                console.log("success !")
-            
-              let currentDate = new Date()
-              currentDate.setSeconds(currentDate.getSeconds() + 60)
-              navigation.replace('Home')
-              await AsyncStorage.setItem('Date', currentDate.toUTCString())
-              
-              await AsyncStorage.setItem('Username', username)
-              .then((res) => {
-                  global.loggedInUser = username;
-                  navigation.replace('Home', {
-                  username: username,
-                  login: true
-              })
-              })
-            }
-            
+                  let currentDate = new Date()
+                  currentDate.setSeconds(currentDate.getSeconds() + 60) //Don't have to login for 60 seconds (development)
+                  navigation.replace('Home')
+                  await AsyncStorage.setItem('Date', currentDate.toUTCString())
+                  
+                  await AsyncStorage.setItem('Username', username)
+                  .then((res) => {
+                      global.loggedInUser = username;
+                      navigation.replace('Home', {
+                      username: username,
+                      login: true
+                  })
+                  })
+                }
+        }))
+        .catch(error => {
+            console.log("Error has occured")
         })
-        .catch((error) => {
-        console.log("Error has occured")
-        console.log(error)
-        })
+    
     }
 
 
