@@ -13,14 +13,18 @@ import LoginPage from './LoginPage';
 import StepTrackerPage from './StepTrackerPage'
 import LeaderboardPage from './LeaderboardPage';
 import SelectCarPage from './SelectCarPage';
+import CarEmissionsNavigator from './CarEmissionsPage';
 
 
 const Tab = createBottomTabNavigator();
-const EmissionsPage = ({route, navigation} : any) => {
+const CarEmissions = () => {
+    return <CarEmissionsNavigator/>
+}
+const EmissionsPage = ({navigation} : any) => {
     return (
             <Tab.Navigator>
                 <Tab.Screen name = "Track Steps" component={StepTrackerPage}></Tab.Screen>
-                <Tab.Screen name = "Track CO2 Emissions" component={SelectCarPage}></Tab.Screen>
+                <Tab.Screen name = "Track CO2 Emissions" component={CarEmissions}></Tab.Screen>
             </Tab.Navigator>
     )
 }
