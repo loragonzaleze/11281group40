@@ -1,22 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableHighlight, Alert} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import type {PickerItem} from 'react-native-woodpicker'
 import {Picker} from 'react-native-woodpicker'
 import axios from 'axios'
 import { NativeStackNavigationProp} from '@react-navigation/native-stack'
 import { RootStackParamList } from '../App';
 import styles from "../stylesFolder/styles"
+import EmissionStyles from '../stylesFolder/EmissionStyles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useContext } from 'react';
 import LoginPage from './LoginPage';
+import FinalizeCarPage from './FinalizeCarPage';
 import EmissionData from '../datasets/FuelEmissions.json';
 const windowWidth = Dimensions.get('screen').width
 
 
 
-const SelectCarPage = () => {
+const SelectCarPage = ({navigation} : any) => {
 
     
 
@@ -111,19 +113,35 @@ const SelectCarPage = () => {
     }
 
 
-    function ConfirmMakeAndModel() {
-        Alert.alert('Button Pressed! Implementation Pending!');
+
+    const ConfirmMakeAndModel = () => {
+        var maker = pickedData?.value;
+        var model = pickedData2?.value;
+
+        if(maker != "" && maker != undefined && model != "" && model != undefined)
+        {
+            var variations = (CarMap.get(maker)).get(model);
+            global.CarMake = maker;
+            global.CarModel = model;
+            global.arr =variations;
+            navigation.navigate('FinalizeCarPage')
+            //Alert.alert('Button Pressed!!');
+        }
+        else
+        {
+            //Alert.alert('Button Pressed! Implementation Pending!');
+        }
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Select Make and Model of your Car</Text>
+        <View style={EmissionStyles.container}>
+            <Text style={EmissionStyles.header}>Select Make and Model of your Car</Text>
             
-            <View style={styles.spacer}/>
+            <View style={EmissionStyles.spacer}/>
 
 
             <Picker
-                style={styles.picker}
+                style={EmissionStyles.picker}
                 item={pickedData}
                 items={data}
                 onItemChange={setPickedData}
@@ -131,7 +149,7 @@ const SelectCarPage = () => {
                 placeholder="Select Make"
                 isNullable
             />
-            <View style={styles.spacer}/>
+            <View style={EmissionStyles.spacer}/>
 
 
             {
@@ -139,7 +157,7 @@ const SelectCarPage = () => {
             }
             
             <Picker
-                style={styles.picker}
+                style={EmissionStyles.picker}
                 item={pickedData2}
                 items={data2}
                 onItemChange={setPickedData2}
@@ -147,11 +165,16 @@ const SelectCarPage = () => {
                 placeholder="Select Model"
                 isNullable
             />
-            <View style={styles.spacer}/>
+            <View style={EmissionStyles.spacer}/>
 
-            <TouchableHighlight style={styles.button}>
-            <Button title="CONFIRM" onPress={ConfirmMakeAndModel} />
-            </TouchableHighlight>
+            <TouchableOpacity 
+                style={EmissionStyles.Button}
+                onPress={ConfirmMakeAndModel}
+            >
+                <Text style={EmissionStyles.buttonText}>
+                    CONFIRM
+                </Text>
+            </TouchableOpacity>
 
 
         </View>
