@@ -25,26 +25,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff'
     },
 
-    picker: {
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 25,
-      borderRadius: 15,
-      width: windowWidth / 1.25,
-      height: 50,
-      paddingHorizontal: 30,
-      textAlignVertical: 'center'
-  },
-
-  spacer: {
-      backgroundColor: '#03fc56',
-      height: 20
-  },
-
-  header: {
-      fontSize: 20
-  },
 
   map: {
     width: Dimensions.get('window').width,
