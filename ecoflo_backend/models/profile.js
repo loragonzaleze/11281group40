@@ -13,6 +13,10 @@ const ProfileSchema = new profileSchema({
     profilePicture : {
         type: String,
         default: 'default'
+    },
+    emissionRate : {
+        type: Number,
+        default: -1
     }
 })
 
