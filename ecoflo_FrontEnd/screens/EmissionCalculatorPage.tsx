@@ -18,17 +18,6 @@ const EmissionCalculatorPage = ({ navigation} : any) => {
     const [number, onChangeNumber] = React.useState('');
     const [text, setText] = useState("Total Emissions");
 
-    /*function Calculate()
-    {
-        if(number != undefined && number != '')
-        {
-            var result = 1.6*parseInt(number)*global.CarEmissionRate;
-            return <TouchableWithoutFeedback style={EmissionStyles.input}>
-                <Text>{result}</Text>
-            </TouchableWithoutFeedback>
-        }
-    }*/
-
     const Calculate = () =>
     {
         if(number != undefined && number != '')

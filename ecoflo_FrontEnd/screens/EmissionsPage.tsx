@@ -23,8 +23,8 @@ const CarEmissions = () => {
 const EmissionsPage = ({navigation} : any) => {
     return (
             <Tab.Navigator>
-                <Tab.Screen name = "Track Steps" component={StepTrackerPage}></Tab.Screen>
                 <Tab.Screen name = "Track CO2 Emissions" component={CarEmissions}></Tab.Screen>
+                <Tab.Screen name = "Track Steps" component={StepTrackerPage}></Tab.Screen>
             </Tab.Navigator>
     )
 }

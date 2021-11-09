@@ -11,6 +11,30 @@ const EmissionStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    container2: {
+        flex: 1,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    container3: {
+      flexDirection: "row",
+      backgroundColor: '#000',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+    stepsText: {
+      color: "#8BFDB9",
+      fontSize: 90
+    },
+    stepsText2: {
+      color: "#8BFDB9",
+      fontSize: 25
+    },
+    stepsText3: {
+      color: "#8BFDB9",
+      fontSize: 18
+    },
     Button: {
       backgroundColor: '#00694d',
       alignItems: 'center',
