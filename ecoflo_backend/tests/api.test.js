@@ -15,6 +15,7 @@ beforeAll( () => {
 })
 
 afterAll( () => {
+
     mongoose.connection.close()
 })
 
@@ -50,7 +51,7 @@ test("POST user emission for today", async() => {
    
 })
 
-test("POST User login service for existing user", async() => {
+test("POST Creating user with existing username", async() => {
     var body = {
         "username" : "admin",
         "password" : "admin",
@@ -104,6 +105,22 @@ test("POST User logins with correct password", async() => {
         expect(res.body.type).equal('Correct Password')
         expect(res.body.correctPassword).equal(true)
     })
+})
 
+test("POST Create new user account", async() => {
+    var body = {
+        "username" : "nonExistentUser23",
+        "password" : "p@ssw0rd",
+        "existingUser" : false
+    }
+    await supertest(app)
+    .post('/api/login')
+    .set('Content-type', 'application/json')
+    .send(body)
+    .expect(200)
+    .then((res) => {
+        expect(res.body.success).equal(true)
+        expect(res.body.type).equal('Created new user')
+    })
 
 })

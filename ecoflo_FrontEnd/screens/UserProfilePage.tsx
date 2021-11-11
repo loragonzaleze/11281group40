@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import {useState} from 'react'
 
+//import Geolocation from 'react-native-geolocation-service';
 import { StyleSheet, Text, View, TextInput, Button, Dimensions, Image} from 'react-native';
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -23,7 +24,28 @@ const UserProfilePage = () => {
 
 
     useEffect(() => {
-        
+    
+        Geolocation.getCurrentPosition(
+            (pos: any) => {
+                console.log(pos)
+            },
+            (err: any) => {
+                console.log("Error")
+            },
+            {
+                accuracy: {
+                    ios: 'best'
+                },
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 10000,
+                distanceFilter: 0,
+                forceRequestLocation: true,
+                forceLocationManager: false,
+                showLocationDialog: true,
+            },
+            
+        )
         AsyncStorage.getItem('Username').then(user => {
             setUsername(user!)
             let apiCall = 'https://loginapitest.herokuapp.com/api/emissions/pastweek?username=' + user
