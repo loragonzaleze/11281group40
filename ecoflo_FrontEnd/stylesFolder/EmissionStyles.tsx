@@ -22,7 +22,13 @@ const EmissionStyles = StyleSheet.create({
       backgroundColor: '#000',
       alignItems: 'center',
       justifyContent: 'center',
+      width: windowWidth,
   },
+  container4: {
+    flexDirection: "row",
+    backgroundColor: '#000',
+    width: windowWidth,
+},
     stepsText: {
       color: "#8BFDB9",
       fontSize: 90
@@ -31,9 +37,70 @@ const EmissionStyles = StyleSheet.create({
       color: "#8BFDB9",
       fontSize: 25
     },
+    leaderboardHeader: {
+      color: "#50E3C2",
+      fontWeight: 'bold',
+      fontSize: 25
+    },
+    leaderboardSquare: {
+      borderWidth: 4,
+      borderColor: '#00B5DE',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginLeft: 10,
+      borderRadius: 15,
+      width: windowWidth / 6,
+      height: windowWidth / 6,
+    },
+    leaderboardRect: {
+      borderWidth: 4,
+      flexDirection: "row",
+      borderColor: '#00B5DE',
+      alignItems: 'center',
+      marginLeft: 10,
+      borderRadius: 15,
+      width: windowWidth / 1.31,
+      height: windowWidth / 6,
+    },
+    Rank: {
+      color: "#F5A623",
+      fontSize: 30,
+      fontWeight: 'bold'
+    },
+    usernameText: {
+      color: "#8BFDB9",
+      marginHorizontal: 10,
+      flexDirection: 'row',
+      fontWeight: 'bold',
+      fontSize: 17,
+    },
     stepsText3: {
       color: "#8BFDB9",
       fontSize: 18
+    },
+    stepsText4: {
+      color: "#8BFDB9",
+      marginHorizontal: 5,
+      fontWeight: 'bold',
+      fontSize: 17
+    },
+    invBox: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    invBox2: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: windowWidth / 2.9,
+    },
+    stepsText5: {
+      color: "#8BFDB9",
+      fontSize: 13
+    },
+    verticalDate: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     Button: {
       backgroundColor: '#00694d',
@@ -42,6 +109,23 @@ const EmissionStyles = StyleSheet.create({
       borderRadius: 30,
       width: windowWidth / 1.75,
       height: 40,
+    },
+    Button2: {
+      backgroundColor: '#50D9E3',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 30,
+      width: windowWidth / 2.3,
+      height: 40,
+    },
+    StepDataBox: {
+      borderWidth: 2,
+      borderColor: '#00B5DE',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 15,
+      width: windowWidth / 2.2,
+      height: 75,
     },
     output: {
       height: 42,
@@ -61,6 +145,10 @@ const EmissionStyles = StyleSheet.create({
     },
     buttonText: {
       color: "#FFF",
+      fontSize: 16
+    },
+    buttonText2: {
+      color: "#000",
       fontSize: 16
     },
     detailsTouchable: {
@@ -106,6 +194,14 @@ const EmissionStyles = StyleSheet.create({
     header: {
         fontSize: 20
     },
+
+    LeaderboardSquare: {
+
+    },
+
+
+
+
 
     logo: {
       resizeMode: 'contain',

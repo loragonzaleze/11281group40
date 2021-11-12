@@ -23,8 +23,12 @@ const EmissionCalculatorPage = ({ navigation} : any) => {
         if(number != undefined && number != '')
         {
             var result = 1.6*parseInt(number)*global.CarEmissionRate;
-            setText(result.toString() + " g of CO2");
+            setText((result. toFixed(1)).toString() + " g of CO2");
         }
+    }
+
+    const SelectNewCar = () => {
+        navigation.navigate('SelectCarPage');
     }
 
     return (
@@ -46,6 +50,10 @@ const EmissionCalculatorPage = ({ navigation} : any) => {
             <Text style={EmissionStyles.header}>Total CO2 Emission for the Day</Text>
             <TouchableOpacity style={EmissionStyles.output} disabled={true}>
             <Text style={EmissionStyles.outputText}>{text}</Text>
+            </TouchableOpacity>
+            <View style={EmissionStyles.spacer} />
+            <TouchableOpacity style={EmissionStyles.Button2} onPress={SelectNewCar}>
+                <Text style={EmissionStyles.buttonText2}>Select a New Car</Text>
             </TouchableOpacity>
         </View>
         </TouchableWithoutFeedback>
