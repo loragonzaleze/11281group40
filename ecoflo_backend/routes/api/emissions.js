@@ -14,7 +14,7 @@ router.get('/pastweek', (req, res) => {
         }, 
         username: queriedUsername
     }
-    Emission.find(query, (error, emissions) => {
+    Emission.find(query).sort("-date").exec((error, emissions) => {
         if(!emissions){
             res.send(
                 {
