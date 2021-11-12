@@ -43,7 +43,6 @@ router.post('/', (req, res) => {
     var queriedSteps = req.body.steps
 
     var lastWeeksDate = new Date(new Date(queriedDate));
-    lastWeeksDate.setDate(lastWeeksDate.getDate() - 7);
 
     lastWeeksDate.setUTCMilliseconds(00, 00, 00);
     lastWeeksDate.setUTCHours(00, 00, 00)

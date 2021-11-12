@@ -14,15 +14,23 @@ import StepTrackerPage from './StepTrackerPage'
 import LeaderboardPage from './LeaderboardPage';
 import SelectCarPage from './SelectCarPage';
 import CarEmissionsNavigator from './CarEmissionsPage';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import  useSafeArea  from "react-native-safe-area-view";
 
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
+ 
 const CarEmissions = () => {
     return <CarEmissionsNavigator/>
 }
 const EmissionsPage = ({navigation} : any) => {
+    const safeArea = useSafeArea
+
     return (
-            <Tab.Navigator>
+
+            <Tab.Navigator
+            >
                 <Tab.Screen name = "Track CO2 Emissions" component={CarEmissions}></Tab.Screen>
                 <Tab.Screen name = "Track Steps" component={StepTrackerPage}></Tab.Screen>
             </Tab.Navigator>

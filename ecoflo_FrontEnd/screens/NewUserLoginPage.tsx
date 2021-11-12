@@ -52,7 +52,7 @@ const NewUserLoginPage = ({navigation} : any) => {
                     console.log("success !")
                 
                   let currentDate = new Date()
-                  currentDate.setSeconds(currentDate.getSeconds() + 60) //Don't have to login for 60 seconds (development)
+                  currentDate.setSeconds(currentDate.getSeconds() + (60 * 60 * 24)) //Don't have to login for 24 hours 
                   navigation.replace('Home')
                   await AsyncStorage.setItem('Date', currentDate.toUTCString())
                   
