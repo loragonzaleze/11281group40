@@ -43,7 +43,7 @@ const ExistingUserLoginPage = ({navigation} : any) => {
                 console.log("success !")
             
               let currentDate = new Date()
-              currentDate.setSeconds(currentDate.getSeconds() + 60)
+              currentDate.setSeconds(currentDate.getSeconds() + (60 * 60 * 24)) //Logged in for 24 hours before logout
               navigation.replace('Home')
               await AsyncStorage.setItem('Date', currentDate.toUTCString())
               

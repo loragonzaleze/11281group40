@@ -14,14 +14,13 @@ import LeaderboardPage from './LeaderboardPage';
 import EmissionsPage from './EmissionsPage';
 import Map from './Map';
 import Icon from 'react-native-vector-icons/Feather'
-
+import {BlurView} from 'expo-blur'
 
 const Tab = createBottomTabNavigator();
 const HomePage = ({route, navigation} : any) => {
     let user = global.loggedInUser
     return (
             <Tab.Navigator
-
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size, focused}) => {
                   const icons = {
@@ -30,20 +29,15 @@ const HomePage = ({route, navigation} : any) => {
                     Map: 'map-pin',
                     TrackEmissions: 'cloud'
                   };
-                  
-            
                   return (
                     focused ? 
                     <Icon
                       name={icons[route.name]}
-                      
-                      color={'#030403'}
+                      color={'#000000'}
                       size={size}
                     /> : 
                     <Icon
-
                       name={icons[route.name]}
-                      
                       color={'#00694d'}
                       size={size}
                     /> 
@@ -59,7 +53,8 @@ const HomePage = ({route, navigation} : any) => {
                     }
                     return routes[route.name]
 
-                }
+                },
+               
               })}
             >
                 <Tab.Screen 

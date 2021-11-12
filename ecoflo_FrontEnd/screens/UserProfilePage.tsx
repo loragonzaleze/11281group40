@@ -1,20 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import {useState} from 'react'
-
 import { StyleSheet, Text, View, TextInput, Button, Dimensions, Image} from 'react-native';
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserProfilePageStyles from '../stylesFolder/UserProfilePageStyles';
 import {useIsFocused} from '@react-navigation/native'
 import {LineChart} from 'react-native-chart-kit'
-import {showMessage} from 'react-native-flash-message'
+import { Rect, Text as TextSVG, Svg } from "react-native-svg";
 
 
 
 
 class UserProfilePage extends React.Component{
-    
     constructor(props) {
         super(props)
         this.state = {
@@ -25,7 +22,13 @@ class UserProfilePage extends React.Component{
             reloads: 0,
             blankDaysMap: new Map(),
             daysMap: new Map(),
-            firstTime: true
+            firstTime: true,
+            dataLabel: {
+                x:0,
+                y:0,
+                clicked:false,
+                value:0
+            }
 
         }
         this.retrieveUserData()
@@ -123,10 +126,6 @@ class UserProfilePage extends React.Component{
 
     render() {
         const {isFocused} = this.props
-        console.log("From the new render function: " + isFocused)
-        console.log("username: " + this.state.username)
-        console.log(this.state.pastWeekEmissions)
-        console.log(this.state.pastWeekDays)
         return (
             
             <View style={UserProfilePageStyles.container}>
@@ -136,6 +135,7 @@ class UserProfilePage extends React.Component{
                 source={require("../assets/defaultPFP.png")}
             />
             <Text>{this.state.username}</Text>
+            <Text>Past week's emissions</Text>
             <LineChart
                 data={
                     {
@@ -153,42 +153,88 @@ class UserProfilePage extends React.Component{
                 yAxisLabel=""
                 yAxisSuffix=""
                 fromZero={true}
-                onDataPointClick={({ value, getColor }) =>{
-                     showMessage({
-                        message: `${value}`,
-                        description: "You selected this value",
-                        backgroundColor: getColor(0.5)
-                      })
+                onDataPointClick={(data) =>{
+                    let samePoint = (this.state.dataLabel.x == data.x && this.state.dataLabel.y == data.y)
+                    let prevClicked = this.state.dataLabel.clicked
+                    samePoint ? this.setState(
+                        {
+                            dataLabel : {
+                                value: data.value,
+                                clicked: !prevClicked,
+                            }
+                        }) : 
+                        this.setState({
+                            dataLabel: {
+                                x: data.x,
+                                y: data.y,
+                                value: data.value,
+                                clicked: true
+                            }
+                        }
+                    )
+                    
                 }} 
+                withHorizontalLabels={false}
                 verticalLabelRotation={-65}
-                xLabelsOffset={Dimensions.get("window").height / 20}
+                xLabelsOffset= {Dimensions.get("window").height / 20}
+  
+                decorator={() => {
+                    return this.state.dataLabel.clicked ? 
+                        <Svg>
+                        <Rect
+                            x={this.state.dataLabel.x - 25}
+                            y={this.state.dataLabel.y + 15} 
+                            height="30"
+                            width="50"
+                            fill="#00694d"
+                        />
+                        <TextSVG
+                            x={this.state.dataLabel.x + 0}
+                            y={this.state.dataLabel.y + 36}
+                            fill="#FFF"
+                            fontSize="14"
+                            textAnchor="middle"
+                        >
+                            {this.state.dataLabel.value.toString() + " g"}
+                        </TextSVG>
+
+                    </Svg> 
+                    : null
+
+                }}
+                
                 chartConfig={{
-                    backgroundColor: "#00694d",
-                    backgroundGradientFrom: "#00694d",
-                    backgroundGradientTo: "#4FBD9F",
-                    decimalPlaces: 0, // optional, defaults to 2dp
+                    backgroundColor: "#FFF",
+                    backgroundGradientFrom: "#FFF",
+                    backgroundGradientTo: "#FFF",
+                    decimalPlaces: 0, 
+                    
                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                     style: {
                       borderRadius: 0
                     },
                     propsForDots: {
-                      r: "4",
+                      r: "3",
                       strokeWidth: "2",
-                      stroke: "#0CEAAD"
-                    }	
-                  }}
+                      stroke: "#00694d",
+                      fill: '#00694d'
+                    },
+                    fillShadowGradient : "#00694d",
+                    fillShadowGradientOpacity: 10,
+                    propsForVerticalLabels: {
+                        stroke:'black'
+                    },
+                    propsForHorizontalLabels:{
+                        stroke:'black'
+                    }
+                }}
                 
                 style={{
                 marginVertical: 8,
                 borderRadius: 16
                 }}
             />
-
-
-
-           
-            
         </View>
         )
     }
