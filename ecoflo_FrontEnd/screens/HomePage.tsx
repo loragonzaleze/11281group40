@@ -13,19 +13,63 @@ import UserProfilePage from './UserProfilePage'
 import LeaderboardPage from './LeaderboardPage';
 import EmissionsPage from './EmissionsPage';
 import Map from './Map';
+import Icon from 'react-native-vector-icons/Feather'
 
 
 const Tab = createBottomTabNavigator();
 const HomePage = ({route, navigation} : any) => {
+    let user = global.loggedInUser
     return (
-            <Tab.Navigator>
+            <Tab.Navigator
+
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ color, size, focused}) => {
+                  const icons = {
+                    User: 'user',
+                    Leaderboard: 'globe',
+                    Map: 'map-pin',
+                    TrackEmissions: 'cloud'
+                  };
+                  
+            
+                  return (
+                    focused ? 
+                    <Icon
+                      name={icons[route.name]}
+                      
+                      color={'#030403'}
+                      size={size}
+                    /> : 
+                    <Icon
+
+                      name={icons[route.name]}
+                      
+                      color={'#00694d'}
+                      size={size}
+                    /> 
+                  );
+                },
+                
+                tabBarLabel: ({focused}) => {
+                    const routes = {
+                        User:<Text>{global.loggedInUser}</Text>,
+                        TrackEmissions: <Text>Emissions</Text>,
+                        Leaderboard: <Text>Leaderboard</Text>,
+                        Map: <Text>Map</Text>
+                    }
+                    return routes[route.name]
+
+                }
+              })}
+            >
                 <Tab.Screen 
-                    name = {global.loggedInUser} 
+                    name = "User"
                     component={UserProfilePage}
-                    options={{headerShown: false}}
-                    
+                    options={{
+                        headerShown: false
+                    }}
                 ></Tab.Screen>
-                <Tab.Screen options={{headerShown: false}} name = "Track Emissions" component={EmissionsPage}></Tab.Screen>
+                <Tab.Screen options={{headerShown: true}} name = "TrackEmissions" component={EmissionsPage}></Tab.Screen>
                 <Tab.Screen name = "Leaderboard" component={LeaderboardPage}></Tab.Screen>
                 <Tab.Screen name  = "Map" component={Map}></Tab.Screen>
             </Tab.Navigator>
