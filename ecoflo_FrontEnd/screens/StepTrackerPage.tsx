@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {useState} from 'react'
 import { Pedometer } from 'expo-sensors';
-import { StyleSheet, Text, View, TextInput, Button, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import axios from 'axios'
 import { NativeStackNavigationProp} from '@react-navigation/native-stack'
 import { RootStackParamList } from '../App';
@@ -97,24 +97,31 @@ export default class StepTrackerPage extends React.Component{
             <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.container3}>
               <View style={EmissionStyles.container2}>
+              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
               <Text style={EmissionStyles.stepsText3}>Calories Burnt</Text>
               <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)*.04).toFixed(1)} cal</Text>
+              </TouchableOpacity>
               </View>
               <View style={EmissionStyles.container2}>
+              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
               <Text style={EmissionStyles.stepsText3}>Distance travelled</Text>
               <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)/2250).toFixed(2)} miles</Text>
+              </TouchableOpacity>
               </View>
             </View>
             <View style={EmissionStyles.spacer}></View>
-            <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.container3}>
               <View style={EmissionStyles.container2}>
+              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
               <Text style={EmissionStyles.stepsText3}>CO2 Emissions saved</Text>
               <Text style={EmissionStyles.stepsText2}>{(((this.state.pastStepCount + this.state.currentStepCount)/2250)*404).toFixed(1)} g</Text>
+              </TouchableOpacity>
               </View>
               <View style={EmissionStyles.container2}>
+              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
               <Text style={EmissionStyles.stepsText3}>This week's Steps</Text>
               <Text style={EmissionStyles.stepsText2}>{this.state.pastWeekStepCount + this.state.currentStepCount} steps</Text>
+              </TouchableOpacity>
               </View>
             </View>
           </View>
