@@ -8,10 +8,24 @@ import {useIsFocused} from '@react-navigation/native'
 import {LineChart} from 'react-native-chart-kit'
 import { Rect, Text as TextSVG, Svg } from "react-native-svg";
 
+interface initialProps {
 
+}
 
+interface initialState {
+    tabInFocus: boolean,
+    username: string,
+    pastWeekEmissions: [0, 0, 0, 0, 0, 0, 0, 0],
+    pastWeekDays: [],
+    reloads: 0,
+    blankDaysMap: any,
+    daysMap: any,
+    firstTime: boolean,
+    dataLabel: object
 
-class UserProfilePage extends React.Component{
+}
+
+class UserProfilePage extends React.Component<initialProps, initialState>{
     constructor(props) {
         super(props)
         this.state = {
