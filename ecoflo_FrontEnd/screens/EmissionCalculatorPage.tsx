@@ -34,11 +34,11 @@ const EmissionCalculatorPage = ({ navigation} : any) => {
 
     const UpdateEmissionData = () => {
         console.log(global.userId + " - " + result)
-        /*if(number != undefined && number != '')
+        if(number != undefined && number != '')
         {
         result = 1.6*parseInt(number)*global.CarEmissionRate;
         var currDate = new Date();
-        axios.post('https://loginapitest.herokuapp.com/api/emission/', {
+        axios.post('https://loginapitest.herokuapp.com/api/emissions/', {
           "username":global.userId,
           "date":currDate,
           "emissions":result.toFixed(0)
@@ -49,7 +49,8 @@ const EmissionCalculatorPage = ({ navigation} : any) => {
         .catch((error) => {
         console.log("error has occured 5")
         console.log(error)
-        })*/
+        })
+    }
     }
 
 

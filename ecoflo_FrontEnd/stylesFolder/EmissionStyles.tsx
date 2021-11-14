@@ -82,7 +82,8 @@ container5: {
     },
     stepsText3: {
       color: "#8BFDB9",
-      fontSize: 18
+      fontSize: 18,
+      alignItems: "center"
     },
     stepsText4: {
       color: "#8BFDB9",
