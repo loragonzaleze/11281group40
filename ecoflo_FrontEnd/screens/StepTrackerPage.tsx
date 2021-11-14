@@ -58,7 +58,6 @@ export default class StepTrackerPage extends React.Component{
         start2.setHours(0, 0, 0, 0);
         start1.setHours(0, 0, 0, 0);
         start1.setDate(start1.getDate()-start1.getDay());
-        console.log("End: " + end + " Start: " + start1);
         Pedometer.getStepCountAsync(start2, end).then(
           result => {
             this.setState({ pastStepCount: result.steps });
@@ -73,6 +72,17 @@ export default class StepTrackerPage extends React.Component{
         Pedometer.getStepCountAsync(start1, end).then(
           result => {
             this.setState({ pastWeekStepCount: result.steps });
+            axios.post('https://loginapitest.herokuapp.com/api/steps/', {
+          "username":global.userId,
+          "date":start1,
+          "steps":this.state.pastWeekStepCount
+        }).then(async (res) => {
+            console.log("Weekly Steps Updated")
+        })
+        .catch((error) => {
+        console.log("error has occured 4")
+        console.log(error)
+        })
           },
           error => {
             this.setState({

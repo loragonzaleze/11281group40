@@ -19,7 +19,6 @@ const FinalizeCarPage = ({ navigation} : any) => {
 
     function displayTouchable(count: number)
     {
-        console.log(global.CarMake);
         let content = [];
         for(var i = 0; i < count; i++)
         {
@@ -40,7 +39,7 @@ const FinalizeCarPage = ({ navigation} : any) => {
                 </TouchableOpacity>);
                 content.push(<View style={EmissionStyles.spacer}/>)
         }
-        console.log('Here');
+
         return content;
     }
     
