@@ -100,8 +100,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                         this.state.daysMap = dayMap
                         console.log("Sucessfully got user emissions")
                         this.formatEmissionsData()
-
-                }
+                    }
             })
             .catch(err => {
                 console.error("Error retrieving data");
@@ -124,12 +123,13 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
             }
         }
         if(this.state.firstTime){
-            
             this.setState({
                 firstTime: false,
                 pastWeekEmissions : formmatedEmissions,
                 pastWeekDays : formattedDays
             })
+            this.forceUpdate()
+
             return;
            
         }
