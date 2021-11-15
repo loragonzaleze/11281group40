@@ -2,38 +2,47 @@ const express = require('express')
 const router = express.Router();
 
 const Step = require('../../models/step')
-router.get('/pastweek', (req, res) => {
-    var queriedUsername = req.query.username
-    var lastWeek = new Date(Date.now() - (8 * 24 * 60 * 60 * 1000))
-  
-    lastWeek.setUTCHours(00, 00, 00)
-    lastWeek.setUTCMinutes(00,00,00)
-    console.log("Last weeks date: ")
-    console.log(lastWeek)
-    var query = {
-        username: queriedUsername,
-        date: lastWeek
-    }
 
-    Step.findOne(query, (error, steps) => {
-        if(!steps){
+router.get('/leaderboard', (req, res) => {
+    const lastSunday = new Date();
+    lastSunday.setDate(lastSunday.getDate()-lastSunday.getDay());
+    lastSunday.setUTCHours(0, 0, 0, 0)
+    lastSunday.setUTCMinutes(0, 0, 0, 0)
+    lastSunday.setUTCSeconds(0, 0, 0, 0)
+
+    var query = {'date' : lastSunday}
+    console.log(query)
+    console.log("Last sunday: " + lastSunday)
+    Step.find(query).sort({steps: -1}).limit(10).then((topUsers) => {
+        if(!topUsers){
+            
             res.send(
                 {
-                    'type': 'No steps found for user for last week',
-                    'success': false
+                    'type':'Encountered error retrieving top steps',
+                    'success' : false
                 }
             )
         }
         else{
+            let userSteps = topUsers.map(user => {
+                return user.steps
+            })
+            let userNames = topUsers.map(user => {
+                return user.username
+            })
             res.send(
                 {
-                'type' : 'Last week User steps',
-                'success' : true,
-                'steps' : steps
+                    'type' : 'Past week top 10 users',
+                    'success' : true,
+                    'users' : userNames,
+                    'steps' : userSteps
+
                 }
             )
         }
     })
+
+
 
 })
 
@@ -47,25 +56,29 @@ router.post('/', (req, res) => {
     lastWeeksDate.setUTCMilliseconds(00, 00, 00);
     lastWeeksDate.setUTCHours(00, 00, 00)
     var query = {'username': queriedUsername, 'date' : lastWeeksDate}
-    var newSteps = {$inc: {'steps' : queriedSteps}}
+    var replacement = {
+        'steps' : queriedSteps
+    }
 
-    Step.findOneAndUpdate(query, newSteps, {upsert: true}, (error, user) => {
-        if(error){
+    Step.findOneAndUpdate(query, replacement, {upsert : true}).then((user) => {
+        console.log(user)
+        if(!user){
             res.send(
                 {
-                    'type' : 'Encountered Error updating user steps',
-                    'success' : false
-                })
+                    'type' : 'Created new entry for user',
+                    'success' : true
+                }
+            )
         }
         else{
             res.send(
                 {
-                    'type': 'Sucessfully updated user steps',
-                      'success': true
-                })
+                    'type' : 'Updated user steps',
+                    'success' : true
+                }
+            )
         }
     })
-
 })
 
 module.exports = router
