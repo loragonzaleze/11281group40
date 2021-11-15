@@ -15,6 +15,12 @@ import EmissionStyles from '../stylesFolder/EmissionStyles';
 
 const LeaderboardPage = () => {
 
+    var user1 = "Username1";
+    var user2 = "Username2";
+    var user3 = "Username3";
+    var user4 = "Username4";
+    var user5 = "Username5";
+    
     var user1steps = 50000;
     var user2steps = 40000;
     var user3steps = 30000;
@@ -34,7 +40,7 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                     <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>Username</Text>
+                        <Text style={EmissionStyles.usernameText}>{user1}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
                         <Text style={EmissionStyles.stepsText4}>{user1steps}</Text>
@@ -53,7 +59,7 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>Username</Text>
+                        <Text style={EmissionStyles.usernameText}>{user2}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
                         <Text style={EmissionStyles.stepsText4}>{user2steps}</Text>
@@ -72,7 +78,7 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>Username</Text>
+                        <Text style={EmissionStyles.usernameText}>{user3}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
                         <Text style={EmissionStyles.stepsText4}>{user3steps}</Text>
@@ -91,7 +97,7 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>Username</Text>
+                        <Text style={EmissionStyles.usernameText}>{user4}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
                         <Text style={EmissionStyles.stepsText4}>{user4steps}</Text>
@@ -110,7 +116,7 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>Username</Text>
+                        <Text style={EmissionStyles.usernameText}>{user5}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
                         <Text style={EmissionStyles.stepsText4}>{user5steps}</Text>
