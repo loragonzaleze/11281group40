@@ -29,6 +29,12 @@ const EmissionStyles = StyleSheet.create({
     backgroundColor: '#000',
     width: windowWidth,
 },
+container5: {
+  flexDirection: "row",
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: windowWidth,
+},
     stepsText: {
       color: "#8BFDB9",
       fontSize: 90
@@ -76,7 +82,8 @@ const EmissionStyles = StyleSheet.create({
     },
     stepsText3: {
       color: "#8BFDB9",
-      fontSize: 18
+      fontSize: 18,
+      alignItems: "center"
     },
     stepsText4: {
       color: "#8BFDB9",
@@ -91,7 +98,7 @@ const EmissionStyles = StyleSheet.create({
     invBox2: {
       alignItems: 'center',
       justifyContent: 'center',
-      width: windowWidth / 2.9,
+      width: windowWidth / 3,
     },
     stepsText5: {
       color: "#8BFDB9",
@@ -115,6 +122,7 @@ const EmissionStyles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 30,
+      marginHorizontal: 8,
       width: windowWidth / 2.3,
       height: 40,
     },
@@ -195,23 +203,11 @@ const EmissionStyles = StyleSheet.create({
         fontSize: 20
     },
 
-    LeaderboardSquare: {
-
-    },
-
-
-
-
-
     logo: {
       resizeMode: 'contain',
       width: windowWidth / 2,
       height: windowHeight / 10
     }
-
-
-
-
 
   });
 

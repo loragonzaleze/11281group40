@@ -51,6 +51,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
             this.setState({
                 username: user!
             })
+            global.userId = this.state.username;
         })
     }
     
