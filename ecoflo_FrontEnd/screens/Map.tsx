@@ -23,6 +23,11 @@ const Map = () => {
     
     async function getLocation() {
       
+        let{status} = await Location.requestForegroundPermissionsAsync();
+        if(status !== 'granted'){
+            console.error("Error getting permissions")
+            return;
+        }
         let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Highest})
         let latitude_ = location.coords.latitude
         let longitude_ = location.coords.longitude
