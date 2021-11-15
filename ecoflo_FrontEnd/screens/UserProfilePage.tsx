@@ -189,7 +189,6 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                     )
                     
                 }} 
-                withHorizontalLabels={false}
                 verticalLabelRotation={-65}
                 xLabelsOffset= {Dimensions.get("window").height / 20}
   
