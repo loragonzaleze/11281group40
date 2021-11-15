@@ -105,33 +105,27 @@ export default class StepTrackerPage extends React.Component{
             <Text style={EmissionStyles.stepsText2}>Steps</Text>
             <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.spacer}></View>
-            <View style={EmissionStyles.container3}>
-              <View style={EmissionStyles.container2}>
-              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
-              <Text style={EmissionStyles.stepsText3}>Calories Burnt</Text>
-              <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)*.04).toFixed(1)} cal</Text>
-              </TouchableOpacity>
-              </View>
-              <View style={EmissionStyles.container2}>
-              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
-              <Text style={EmissionStyles.stepsText3}>Distance travelled</Text>
-              <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)/2250).toFixed(2)} miles</Text>
-              </TouchableOpacity>
-              </View>
-            </View>
             <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.container3}>
               <View style={EmissionStyles.container2}>
-              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
-              <Text style={EmissionStyles.stepsText3}>CO2 Emissions saved</Text>
-              <Text style={EmissionStyles.stepsText2}>{(((this.state.pastStepCount + this.state.currentStepCount)/2250)*404).toFixed(1)} g</Text>
-              </TouchableOpacity>
+              <Text style={EmissionStyles.stepsText3}>Calories Burnt</Text>
+              <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)*.04).toFixed(1)} cal</Text>
               </View>
               <View style={EmissionStyles.container2}>
-              <TouchableOpacity style={EmissionStyles.StepDataBox} disabled={true}>
+              <Text style={EmissionStyles.stepsText3}>Distance travelled</Text>
+              <Text style={EmissionStyles.stepsText2}>{((this.state.pastStepCount + this.state.currentStepCount)/2250).toFixed(2)} miles</Text>
+              </View>
+            </View>
+            <View style={EmissionStyles.spacer}></View>
+            <View style={EmissionStyles.spacer}></View>
+            <View style={EmissionStyles.container3}>
+              <View style={EmissionStyles.container2}>
+              <Text style={EmissionStyles.stepsText3}>CO2 Emissions saved</Text>
+              <Text style={EmissionStyles.stepsText2}>{(((this.state.pastStepCount + this.state.currentStepCount)/2250)*404).toFixed(1)} g</Text>
+              </View>
+              <View style={EmissionStyles.container2}>
               <Text style={EmissionStyles.stepsText3}>This week's Steps</Text>
               <Text style={EmissionStyles.stepsText2}>{this.state.pastWeekStepCount + this.state.currentStepCount} steps</Text>
-              </TouchableOpacity>
               </View>
             </View>
           </View>
