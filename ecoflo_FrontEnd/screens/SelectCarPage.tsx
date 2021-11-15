@@ -125,11 +125,6 @@ const SelectCarPage = ({navigation} : any) => {
             global.CarModel = model;
             global.arr =variations;
             navigation.navigate('FinalizeCarPage')
-            //Alert.alert('Button Pressed!!');
-        }
-        else
-        {
-            //Alert.alert('Button Pressed! Implementation Pending!');
         }
     }
 
