@@ -15,6 +15,10 @@ import EmissionStyles from '../stylesFolder/EmissionStyles';
 
 const LeaderboardPage = () => {
 
+    const lastSunday = new Date();
+    lastSunday.setHours(0, 0, 0, 0);
+    lastSunday.setDate(lastSunday.getDate()-lastSunday.getDay());
+
     var user1 = "Username1";
     var user2 = "Username2";
     var user3 = "Username3";
