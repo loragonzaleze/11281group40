@@ -103,7 +103,7 @@ export default class StepTrackerPage extends React.Component{
           <View style={EmissionStyles.container2}>
             <Text style={EmissionStyles.stepsText}>{this.state.pastStepCount + this.state.currentStepCount}</Text>
             <Text style={EmissionStyles.stepsText2}>Steps</Text>
-            <View style={EmissionStyles.spacer}></View>
+            
             <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.spacer}></View>
             <View style={EmissionStyles.container3}>
