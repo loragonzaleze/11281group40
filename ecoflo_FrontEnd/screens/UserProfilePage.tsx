@@ -151,14 +151,13 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
         return (
             
         <View style={UserProfilePageStyles.container}>
-
+            <Text style={UserProfilePageStyles.welcome}>Welcome <Text style={UserProfilePageStyles.username}>{this.state.username}</Text>!</Text>
             <StatusBar  translucent={true} />
             <View style={UserProfilePageStyles.profileNameView}>
                 <Image
                     style={UserProfilePageStyles.pfp}
                     source={require("../assets/defaultPFP.png")}
                 />
-                <Text style={UserProfilePageStyles.username}>{this.state.username}</Text>
             </View>
             <View style={UserProfilePageStyles.weeklySumView}>
                 <Text style={UserProfilePageStyles.title}>Past week's emissions</Text>
