@@ -12,6 +12,7 @@ const UserProfilePageStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFF',
+        alignItems: 'center',
     },
     weeklySum : {
         fontSize : 28,
@@ -23,7 +24,9 @@ const UserProfilePageStyles = StyleSheet.create({
 
     },
     title : {
-        fontSize : 17
+        fontSize : 17,
+        marginLeft : windowWidth / 7,
+        alignItems: 'center'
     },
     profileNameView : {
         flex: 0.6,
