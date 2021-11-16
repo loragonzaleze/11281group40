@@ -15,10 +15,15 @@ const UserProfilePageStyles = StyleSheet.create({
         alignItems: 'center',
     },
     weeklySum : {
-        fontSize : 22,
+        fontSize : 28,
         fontWeight: 'bold',
     },
     weeklySumView : {
+        marginLeft : windowWidth / 25,
+
+    },
+    title : {
+        fontSize : 17,
         marginLeft : windowWidth / 7,
         alignItems: 'center',
         padding: 10
@@ -33,6 +38,7 @@ const UserProfilePageStyles = StyleSheet.create({
     },
     username : {
         alignSelf : 'center',
+        fontSize: 22,
         padding: 10
     },
     welcome: {
