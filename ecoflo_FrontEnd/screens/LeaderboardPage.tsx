@@ -36,20 +36,24 @@ const LeaderboardPage = () => {
     return (
         <View style={LeaderboardStyles.container}>
             <View style={LeaderboardStyles.top}>
+            <Image
+                style={LeaderboardStyles.podiumImage}
+                source={require("../assets/podium.png")}
+            />
 
             </View>
             <View style={LeaderboardStyles.rows}>
                 <View style={LeaderboardStyles.rank}>
-                    <Text>Rank</Text>
+                    <Text style={LeaderboardStyles.text}>Rank</Text>
                 </View>
                 <View style={LeaderboardStyles.pfp}>
 
                 </View>
                 <View style={LeaderboardStyles.userName}>
-                    <Text>User</Text>
+                    <Text style={LeaderboardStyles.text}>User</Text>
                 </View>
                 <View style={LeaderboardStyles.Steps}>
-                    <Text>Steps</Text>
+                    <Text style={LeaderboardStyles.text}>Steps</Text>
                 </View>
                 <View style={LeaderboardStyles.CO2}>
                     <Text style={LeaderboardStyles.text}>CO2 Saved (g)</Text>
