@@ -134,7 +134,6 @@ const SelectCarPage = ({navigation} : any) => {
             
             <View style={EmissionStyles.spacer}/>
 
-
             <Picker
                 style={EmissionStyles.picker}
                 item={pickedData}

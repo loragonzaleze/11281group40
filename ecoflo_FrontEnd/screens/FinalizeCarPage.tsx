@@ -1,17 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {useState} from 'react'
 
 import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableHighlight, TouchableOpacity} from 'react-native';
-import axios from 'axios'
-import { NativeStackNavigationProp} from '@react-navigation/native-stack'
-import { RootStackParamList } from '../App';
-import styles from "../stylesFolder/styles"
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useContext } from 'react';
 import EmissionStyles from '../stylesFolder/EmissionStyles';
-import EmissionCalculatorPage from './EmissionCalculatorPage'
 
 
 
@@ -30,12 +20,13 @@ const FinalizeCarPage = ({ navigation} : any) => {
                     navigation.navigate('EmissionCalculatorPage')
                 }}
                 >
-                <Text style={EmissionStyles.detailsText}>
-                    Manufacturer - {global.CarMake}, Model - {global.CarModel},{"\n"}
-                    Vehicle Class - {item.vehicleClass}, Engine Size - {item.engineSize} L,{"\n"}
-                    Cylinders - {item.cylinders}, Transmission - {item.transmission},{"\n"}
-                    Emission Rate - {item.emissionRate} g/km
-                </Text>
+                <Text><Text style={styles.leftText}>Manufacturer</Text> {global.CarMake}</Text>
+                <Text><Text style={styles.leftText}>Model</Text> {global.CarModel}</Text>
+                <Text><Text style={styles.leftText}>Vehicle Class</Text> {item.vehicleClass}</Text>
+                <Text><Text style={styles.leftText}>Engine Size</Text> {item.engineSize}</Text>
+                <Text><Text style={styles.leftText}>Cylinders</Text> {item.cylinders}</Text>
+                <Text><Text style={styles.leftText}>Transmission</Text> {item.transmission}</Text>
+                <Text><Text style={styles.leftText}>Emission Rate</Text> {item.emissionRate} g/km</Text>
                 </TouchableOpacity>);
                 content.push(<View style={EmissionStyles.spacer}/>)
         }
@@ -58,3 +49,9 @@ const FinalizeCarPage = ({ navigation} : any) => {
 
 
 export default FinalizeCarPage;
+
+const styles = StyleSheet.create({
+    leftText: {
+        fontWeight: '600'
+    }
+})

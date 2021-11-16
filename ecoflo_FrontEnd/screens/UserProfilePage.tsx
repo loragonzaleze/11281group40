@@ -58,7 +58,6 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
 
         }
 
-
         AsyncStorage.getItem('Username').then(user => {
             this.setState({
                 username: user!
@@ -162,8 +161,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                 <Text style={UserProfilePageStyles.username}>{this.state.username}</Text>
             </View>
             <View style={UserProfilePageStyles.weeklySumView}>
-                <Text>Past week's emissions</Text>
-                <Text style={UserProfilePageStyles.weeklySum}>{this.state.weeklyEmissionsSum}</Text>
+                <Text>Past week's emissions: <Text style={UserProfilePageStyles.weeklySum}>{this.state.weeklyEmissionsSum}</Text></Text>
             </View>
             
            
