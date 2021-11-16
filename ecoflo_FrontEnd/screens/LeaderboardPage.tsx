@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {useState} from 'react'
 
-import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Dimensions, TouchableOpacity, ActivityIndicator} from 'react-native';
 import axios from 'axios'
 import { NativeStackNavigationProp} from '@react-navigation/native-stack'
 import { RootStackParamList } from '../App';
@@ -14,25 +14,22 @@ import EmissionStyles from '../stylesFolder/EmissionStyles';
 
 
 const LeaderboardPage = () => {
-
-    const lastSunday = new Date();
-    lastSunday.setHours(0, 0, 0, 0);
-    lastSunday.setDate(lastSunday.getDate()-lastSunday.getDay());
-
-    var user1 = "Username1";
-    var user2 = "Username2";
-    var user3 = "Username3";
-    var user4 = "Username4";
-    var user5 = "Username5";
-    
-    var user1steps = 50000;
-    var user2steps = 40000;
-    var user3steps = 30000;
-    var user4steps = 20000;
-    var user5steps = 10000;
-
-
-
+    const [APICall, setAPICall] = useState(true);
+    const [usernames, setUsername] = useState([]);
+    const [steps, setSteps] = useState([]);
+    useEffect(() => {
+        const url = "https://loginapitest.herokuapp.com/api/steps/leaderboard/";
+        axios.get(url).then((user) => {
+            setUsername(user.data.users);
+            setSteps(user.data.steps);
+            setAPICall(false)
+        })
+        .catch(err => {
+            console.error("Error getting leaderboard data");
+            console.error(err)
+        })
+        return
+    }, [0,0,0,0,0,0,0,0,0,0])
 
     return (
         <View style={EmissionStyles.container2}>
@@ -44,14 +41,14 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                     <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>{user1}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.usernameText}>{usernames[0]}</Text>}
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{user1steps}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{steps[0]}</Text>}
                         <Text style={EmissionStyles.stepsText5}>Steps</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{(user1steps*404/2250).toFixed(1)}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{(steps[0]*404/2250).toFixed(1)}</Text>}
                         <Text style={EmissionStyles.stepsText5}>g of CO2 saved</Text>
                     </TouchableOpacity>
                 </TouchableOpacity>
@@ -63,14 +60,14 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>{user2}</Text>
+                {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.usernameText}>{usernames[1]}</Text>}
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{user2steps}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{steps[1]}</Text>}
                         <Text style={EmissionStyles.stepsText5}>Steps</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{(user2steps*404/2250).toFixed(1)}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{(steps[1]*404/2250).toFixed(1)}</Text>}
                         <Text style={EmissionStyles.stepsText5}>g of CO2 saved</Text>
                     </TouchableOpacity>
                 </TouchableOpacity>
@@ -82,14 +79,14 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>{user3}</Text>
+                {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.usernameText}>{usernames[2]}</Text>}
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{user3steps}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{steps[2]}</Text>}
                         <Text style={EmissionStyles.stepsText5}>Steps</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{(user3steps*404/2250).toFixed(1)}</Text>
+                    {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{(steps[2]*404/2250).toFixed(1)}</Text>}
                         <Text style={EmissionStyles.stepsText5}>g of CO2 saved</Text>
                     </TouchableOpacity>
                 </TouchableOpacity>
@@ -101,14 +98,14 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>{user4}</Text>
+                {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.usernameText}>{usernames[3]}</Text>}
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{user4steps}</Text>
+                        {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{steps[3]}</Text>}
                         <Text style={EmissionStyles.stepsText5}>Steps</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{(user4steps*404/2250).toFixed(1)}</Text>
+                        {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{(steps[3]*404/2250).toFixed(1)}</Text>}
                         <Text style={EmissionStyles.stepsText5}>g of CO2 saved</Text>
                     </TouchableOpacity>
                 </TouchableOpacity>
@@ -120,14 +117,14 @@ const LeaderboardPage = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={EmissionStyles.leaderboardRect} disabled={true}>
                 <TouchableOpacity style={EmissionStyles.invBox2} disabled={true}>
-                        <Text style={EmissionStyles.usernameText}>{user5}</Text>
+                {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.usernameText}>{usernames[4]}</Text>}
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{user5steps}</Text>
+                        {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{steps[4]}</Text>}
                         <Text style={EmissionStyles.stepsText5}>Steps</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={EmissionStyles.invBox} disabled={true}>
-                        <Text style={EmissionStyles.stepsText4}>{(user5steps*404/2250).toFixed(1)}</Text>
+                        {APICall ? <ActivityIndicator size="small"/> : <Text style={EmissionStyles.stepsText4}>{(steps[4]*404/2250).toFixed(1)}</Text>}
                         <Text style={EmissionStyles.stepsText5}>g of CO2 saved</Text>
                     </TouchableOpacity>
                 </TouchableOpacity>
