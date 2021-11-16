@@ -7,13 +7,13 @@ const EmissionStyles = StyleSheet.create({
     
     container: {
         flex: 1,
-        backgroundColor: '#8BFDB9',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
     container2: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -36,11 +36,11 @@ container5: {
   width: windowWidth,
 },
     stepsText: {
-      color: "#8BFDB9",
+      color: "#00694d",
       fontSize: 90
     },
     stepsText2: {
-      color: "#8BFDB9",
+      color: "#00694d",
       fontSize: 25
     },
     leaderboardHeader: {
@@ -81,7 +81,7 @@ container5: {
       fontSize: 17,
     },
     stepsText3: {
-      color: "#8BFDB9",
+      color: "#C5C5C5",
       fontSize: 18,
       alignItems: "center"
     },
@@ -172,7 +172,7 @@ container5: {
       fontSize: 14
     },
     picker: {
-        backgroundColor: '#fff',
+        backgroundColor: '#F0F0F0',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 25,
