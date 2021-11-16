@@ -21,7 +21,8 @@ interface initialState {
     blankDaysMap: any,
     daysMap: any,
     firstTime: boolean,
-    dataLabel: object
+    dataLabel: object,
+    weeklyEmissionsSum: 0
 
 }
 
@@ -42,7 +43,9 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                 y:0,
                 clicked:false,
                 value:0
-            }
+            },
+            weeklyEmissionsSum: 0
+            
 
         }
         this.retrieveUserData()
@@ -110,7 +113,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
     }
 
     formatEmissionsData = () => {
-
+        const sumEmissions = (emission1, emission2) => emission1 + emission2
         let formmatedEmissions = []
         let formattedDays = []
         for (const [key, value] of this.state.blankDaysMap.entries()) {
@@ -134,6 +137,8 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
             return;
            
         }
+        this.state.weeklyEmissionsSum = formmatedEmissions.reduce(sumEmissions)
+        console.log("The weekly emissions is: " + this.state.weeklyEmissionsSum)
         this.state.pastWeekEmissions = formmatedEmissions
         this.state.pastWeekDays = formattedDays
     }
