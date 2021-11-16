@@ -19,6 +19,7 @@ const Map = () => {
     const [hazardousFacilities, setHazardousFacilities] = useState([])
     const [longitudeVariable, setLongitudeVariable] = useState([])
     const [latitudeVariable, setLatitudeVariable] = useState([])
+    const [coordinates, setCoordinates] = useState([])
 
     class Facility {
         facilityName: string;
@@ -46,12 +47,28 @@ const Map = () => {
     async function retrieveWasteLocations() {
         let apiWasteCall = 'https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/CHAZ/MapServer/3/query?where=1%3D1&outFields=*&geometry=&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outSR=4326&f=json'
         var tempArr = new Array();
+        var tempCoord = new Array();
         axios.get(apiWasteCall).then((facilities) => {
             for(var i = 0; i < facilities.data.features.length; i++) {
                 var temp = new Facility(facilities.data.features[i].attributes.NAME, facilities.data.features[i].attributes.ADDRESS, facilities.data.features[i].attributes.CITY, facilities.data.features[i].attributes.ZIP5, facilities.data.features[i].geometry.y, facilities.data.features[i].geometry.x);
                 tempArr.push(temp);
             }
             setHazardousFacilities(tempArr)
+            
+            tempArr.forEach((facility) => {
+
+                var facility_ = {
+                    name : facility.facilityName,
+                    coordinate : {
+                        latitude: facility.facilityLatitude,
+                        longitude: facility.facilityLongitude
+                    }
+                    
+                }
+                tempCoord.push(facility_)
+            })
+            console.log(tempCoord)
+            setCoordinates(tempCoord)
         })
     }
     
@@ -88,10 +105,13 @@ const Map = () => {
                     latitudeDelta: 0.02,
                     longitudeDelta: 0.01
                 }}>
-                    <Marker
-                        coordinate={{latitude : latitude , longitude :longitude}}
-                        pinColor={'red'}
-                    />
+                   {coordinates.map(facility => (
+                        <Marker
+                            coordinate={facility.coordinate}
+                            pinColor='purple'
+                            title={facility.name}
+                        />
+                    ))}
             </MapView> :  
             <MapView style={styles.map}/>}
         </View>

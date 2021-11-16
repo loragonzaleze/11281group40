@@ -21,20 +21,30 @@ interface initialState {
     blankDaysMap: any,
     daysMap: any,
     firstTime: boolean,
-    dataLabel: object
+    dataLabel: object,
+    weeklyEmissionsSum: 0
 
 }
 
 class UserProfilePage extends React.Component<initialProps, initialState>{
     constructor(props) {
         super(props)
+
+        let todaysDate = new Date()
+        let allDaysMap = new Map()
+        let currDate = new Date(todaysDate)
+        for(let i = 7; i > -1; --i){
+            currDate.setDate(todaysDate.getDate() - i)
+            allDaysMap.set(currDate.toLocaleDateString(), 0)
+        }
+        
         this.state = {
             tabInFocus: false,
             username: 'empty',
             pastWeekEmissions: [0, 0, 0, 0, 0, 0, 0, 0],
             pastWeekDays: [],
             reloads: 0,
-            blankDaysMap: new Map(),
+            blankDaysMap: allDaysMap,
             daysMap: new Map(),
             firstTime: true,
             dataLabel: {
@@ -42,15 +52,19 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                 y:0,
                 clicked:false,
                 value:0
-            }
+            },
+            weeklyEmissionsSum: 0
+            
 
         }
-        this.retrieveUserData()
+
 
         AsyncStorage.getItem('Username').then(user => {
             this.setState({
                 username: user!
             })
+            this.retrieveUserData()
+
             global.userId = this.state.username;
         })
     }
@@ -60,20 +74,6 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
     }
 
     componentDidMount() {
-
-        let todaysDate = new Date()
-        let allDaysMap = new Map()
-        let currDate = new Date(todaysDate)
-        for(let i = 7; i > -1; --i){
-            currDate.setDate(todaysDate.getDate() - i)
-            allDaysMap.set(currDate.toLocaleDateString(), 0)
-        }
-
-        this.setState({
-            blankDaysMap: allDaysMap
-        })
-      
-
     }
 
     retrieveUserData = async () => {
@@ -88,6 +88,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
 
                             }
                         ).reverse()
+
                         this.state.pastWeekEmissions = emissionNums
                         this.state.pastWeekDays = dates
                         let results = {}
@@ -99,6 +100,7 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                         });
                         let dayMap = new Map(Object.entries(results))
                         this.state.daysMap = dayMap
+                        console.log(this.state.daysMap )
                         console.log("Sucessfully got user emissions")
                         this.formatEmissionsData()
                     }
@@ -110,9 +112,14 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
     }
 
     formatEmissionsData = () => {
-
-        let formmatedEmissions = []
-        let formattedDays = []
+        const sumEmissions = (emission1, emission2) => emission1 + emission2
+        var formmatedEmissions = []
+        var formattedDays = []
+        if(this.state.firstTime){
+            console.log("Printing out initial value of maps")
+            console.log(this.state.blankDaysMap)
+            console.log(this.state.daysMap)
+        }
         for (const [key, value] of this.state.blankDaysMap.entries()) {
             if(this.state.daysMap.has(key)){
                 formmatedEmissions.push(this.state.daysMap.get(key))
@@ -124,16 +131,17 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
             }
         }
         if(this.state.firstTime){
+            var weeklySum = formmatedEmissions.reduce(sumEmissions)
             this.setState({
                 firstTime: false,
                 pastWeekEmissions : formmatedEmissions,
-                pastWeekDays : formattedDays
+                pastWeekDays : formattedDays,
+                weeklyEmissionsSum : weeklySum
             })
-            this.forceUpdate()
 
             return;
-           
         }
+        this.state.weeklyEmissionsSum = formmatedEmissions.reduce(sumEmissions)
         this.state.pastWeekEmissions = formmatedEmissions
         this.state.pastWeekDays = formattedDays
     }
@@ -143,14 +151,35 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
         const {isFocused} = this.props
         return (
             
-            <View style={UserProfilePageStyles.container}>
+        <View style={UserProfilePageStyles.container}>
+
             <StatusBar  translucent={true} />
-            <Image
-                style={UserProfilePageStyles.pfp}
-                source={require("../assets/defaultPFP.png")}
-            />
-            <Text>{this.state.username}</Text>
-            <Text>Past week's emissions</Text>
+            <View style={UserProfilePageStyles.profileNameView}>
+                <Image
+                    style={UserProfilePageStyles.pfp}
+                    source={require("../assets/defaultPFP.png")}
+                />
+                <Text style={UserProfilePageStyles.username}>{this.state.username}</Text>
+            </View>
+            <View style={UserProfilePageStyles.weeklySumView}>
+                <Text>Past week's emissions</Text>
+                <Text style={UserProfilePageStyles.weeklySum}>{this.state.weeklyEmissionsSum}</Text>
+            </View>
+            
+           
+            <Svg height="60" width="200">
+                <TextSVG
+                    fill="none"
+                    stroke="purple"
+                    fontSize="20"
+                    fontWeight="bold"
+                    x="100"
+                    y="20"
+                    textAnchor='middle'
+                >
+                    STROKED TEXT
+                </TextSVG>
+            </Svg>
             <LineChart
                 data={
                     {

@@ -6,14 +6,32 @@ const UserProfilePageStyles = StyleSheet.create({
     pfp: {
         width: windowWidth / 5,
         height: windowWidth / 5,
-        borderRadius: windowWidth / 10
+        borderRadius: windowWidth / 10,
+        alignSelf: 'center'
     },
     container: {
         flex: 1,
         backgroundColor: '#FFF',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
+    weeklySum : {
+        fontSize : 22,
+        fontWeight: 'bold',
+     
+    },
+    weeklySumView : {
+        marginLeft : windowWidth / 7
+    },
+    profileNameView : {
+        flex: 0.6,
+        alignContent: 'flex-end',
+        justifyContent: 'center',
+        alignSelf : 'center',
+        paddingTop : windowHeight / 8
+
+    },
+    username : {
+        alignSelf : 'center'
+    }
 
 
 })
