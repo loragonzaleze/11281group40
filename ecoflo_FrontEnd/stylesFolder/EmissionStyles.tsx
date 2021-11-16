@@ -139,8 +139,9 @@ container5: {
       height: 42,
       margin: 12,
       width: windowWidth / 2,
-      borderWidth: 1,
+      borderWidth: 2,
       padding: 10,
+      borderColor: '#00694d',
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
@@ -148,7 +149,7 @@ container5: {
       textAlign: 'center'
     },
     outputText: {
-      color: "#9B9B9B",
+      color: "#00694d",
       fontSize: 16
     },
     buttonText: {
@@ -160,7 +161,7 @@ container5: {
       fontSize: 16
     },
     detailsTouchable: {
-      backgroundColor: '#07E4EE',
+      backgroundColor: '#EDEDED',
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 10,
@@ -168,7 +169,7 @@ container5: {
       paddingVertical: 10
     },
     detailsText: {
-      color: "#000",
+      color: "#2E2E2E",
       fontSize: 14
     },
     picker: {
@@ -186,9 +187,8 @@ container5: {
       height: 42,
       margin: 12,
       width: windowWidth / 2,
-      borderWidth: 1,
       padding: 10,
-      backgroundColor: '#fff',
+      backgroundColor: '#F0F0F0',
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 15,
@@ -200,7 +200,8 @@ container5: {
     },
   
     header: {
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: '600'
     },
 
     logo: {

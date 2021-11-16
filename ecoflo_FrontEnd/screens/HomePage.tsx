@@ -5,8 +5,8 @@ import {useState} from 'react'
 import { StyleSheet, Text, View, TextInput, Button, Dimensions} from 'react-native';
 import axios from 'axios'
 import { NativeStackNavigationProp} from '@react-navigation/native-stack'
-import { RootStackParamList } from '../App';
 import styles from "../stylesFolder/styles"
+import NavBarStyles from '../stylesFolder/NavBarStyles'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import UserProfilePage from './UserProfilePage'
@@ -33,12 +33,12 @@ const HomePage = ({route, navigation} : any) => {
                     focused ? 
                     <Icon
                       name={icons[route.name]}
-                      color={'#000000'}
+                      color={'#00694d'}
                       size={size}
                     /> : 
                     <Icon
                       name={icons[route.name]}
-                      color={'#00694d'}
+                      color={'#C5C5C5'}
                       size={size}
                     /> 
                   );
@@ -46,10 +46,10 @@ const HomePage = ({route, navigation} : any) => {
                 
                 tabBarLabel: ({focused}) => {
                     const routes = {
-                        User:<Text>{global.loggedInUser}</Text>,
-                        TrackEmissions: <Text>Emissions</Text>,
-                        Leaderboard: <Text>Leaderboard</Text>,
-                        Map: <Text>Map</Text>
+                        User:<Text style={NavBarStyles.iconText}>{global.loggedInUser}</Text>,
+                        TrackEmissions: <Text style={NavBarStyles.iconText}>Emissions</Text>,
+                        Leaderboard: <Text style={NavBarStyles.iconText}>Leaderboard</Text>,
+                        Map: <Text style={NavBarStyles.iconText}>Map</Text>
                     }
                     return routes[route.name]
 
@@ -61,12 +61,44 @@ const HomePage = ({route, navigation} : any) => {
                     name = "User"
                     component={UserProfilePage}
                     options={{
-                        headerShown: false
+                        headerShown: true,
+                        headerStyle: {
+                          backgroundColor: '#00694d',
+                        },
+                        headerTintColor: '#fff'
                     }}
                 ></Tab.Screen>
-                <Tab.Screen options={{headerShown: true}} name = "TrackEmissions" component={EmissionsPage}></Tab.Screen>
-                <Tab.Screen name = "Leaderboard" component={LeaderboardPage}></Tab.Screen>
-                <Tab.Screen name  = "Map" component={Map}></Tab.Screen>
+                <Tab.Screen 
+                  options={{
+                    headerShown: true,
+                    headerStyle: {
+                      backgroundColor: '#00694d',
+                    },
+                    headerTintColor: '#fff'
+                  }} 
+                  name = "TrackEmissions" 
+                  component={EmissionsPage}
+                  ></Tab.Screen>
+                <Tab.Screen
+                  options={{
+                    headerStyle: {
+                      backgroundColor: '#00694d',
+                    },
+                    headerTintColor: '#fff'
+                  }}
+                  name = "Leaderboard" 
+                  component={LeaderboardPage}
+                ></Tab.Screen>
+                <Tab.Screen
+                  options={{
+                    headerStyle: {
+                      backgroundColor: '#00694d',
+                    },
+                    headerTintColor: '#fff'
+                  }}
+                  name  = "Map"
+                  component={Map}
+                ></Tab.Screen>
             </Tab.Navigator>
     )
 }
