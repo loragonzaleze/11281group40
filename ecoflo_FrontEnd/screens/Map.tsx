@@ -141,6 +141,11 @@ const Map = () => {
                     latitudeDelta: 0.02,
                     longitudeDelta: 0.01
                 }}>
+                    <Marker
+                    coordinate={{latitude: latitude, longitude: longitude}}
+                    pinColor='blue'
+                    title='You are here'
+                    />
                    {hazardCoordinates.map(facility => (
                         <Marker
                             coordinate={facility.coordinate}

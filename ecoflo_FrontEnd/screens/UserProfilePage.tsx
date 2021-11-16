@@ -162,24 +162,10 @@ class UserProfilePage extends React.Component<initialProps, initialState>{
                 <Text style={UserProfilePageStyles.username}>{this.state.username}</Text>
             </View>
             <View style={UserProfilePageStyles.weeklySumView}>
-                <Text>Past week's emissions</Text>
-                <Text style={UserProfilePageStyles.weeklySum}>{this.state.weeklyEmissionsSum}</Text>
+                <Text style={UserProfilePageStyles.title}>Past week's emissions</Text>
+                <Text style={UserProfilePageStyles.weeklySum}>{this.state.weeklyEmissionsSum} Grams</Text>
             </View>
             
-           
-            <Svg height="60" width="200">
-                <TextSVG
-                    fill="none"
-                    stroke="purple"
-                    fontSize="20"
-                    fontWeight="bold"
-                    x="100"
-                    y="20"
-                    textAnchor='middle'
-                >
-                    STROKED TEXT
-                </TextSVG>
-            </Svg>
             <LineChart
                 data={
                     {
