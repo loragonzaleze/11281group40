@@ -12,8 +12,14 @@ const LeaderboardStyles = StyleSheet.create({
     },
     top: {
         backgroundColor: '#50D9E3',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: windowWidth,
         flex: 5
+    },
+    podiumImage: {
+        flex:1,
+        resizeMode: 'contain'
     },
     rank: {
         flex: 1.5,
@@ -57,19 +63,21 @@ const LeaderboardStyles = StyleSheet.create({
 
     },
     text: {
+        fontWeight: 'bold',
         textAlign:'center'
     },
     RankText: {
-
+        fontSize: 17,
+        fontWeight: 'bold'
     },
     UserNameText: {
-        
+        fontWeight: 'bold'
     },
     StepsText: {
-        
+
     },
     CO2Text: {
-        
+
     },
     pfpImage: {
         width: windowWidth * 0.11,
