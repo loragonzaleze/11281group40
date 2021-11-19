@@ -12,6 +12,7 @@ This project is a full stack mobile app developed using the MERN stack.
 
 
 ## Prerequisites
+---
 #### Download Expo Go
 To run this application on your mobile device, you must have Expo Go installed. The download links for iOS and Android 
 can be found below:
@@ -45,6 +46,9 @@ Once you have verified that you are in the correct directory, you can begin inst
   * `cd ecoflo_backend`
   * `npm install`
 
+
+---
+
 ## Running React Native applicaton (Front-End)
 The following steps will guide you on how to run the mobile app on your phone
 * Ensure you are in front-end folder by running `cd ecoflo_FrontEnd`
@@ -58,6 +62,7 @@ The following steps will guide you on how to run the mobile app on your phone
 Once these steps are complete, you will be able to use the app with all of its functionalities
 
 ## Running Node.js/Express Server locally (Back-End)
+
 The following steps are to run the back-end server locally for debugging purposes.
 * Ensure you are in back-end folder by running `cd ecoflo_backend`
 * Run `nodemon server` to run the server
@@ -67,6 +72,45 @@ The following steps are to run the back-end server locally for debugging purpose
     Connected to Database
     ```
 * The API endpoints can be tested using an API tester such as [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/)
+## Project Structure 
+```
+.
+└── Project 
+    ├── .circleci //Contains circleci configurations
+    |   ├── config.yml
+    ├── .vs
+    |   ├── VSWorkspaceState.json
+    |   ├── slnx.sqlite
+    ├── ecoflo_FrontEnd //Root folder of the front end
+    |   ├── .expo-shared
+    |   ├── .idea
+    |   ├── .vs 
+    |   ├── assets //used to hold assets such as pictures and gifs
+    |   ├── datasets //contains datasets used in this project, such as car emissions specificaions
+    |   ├── screens //Contains all UI screens
+    |   ├── stylesFolder //Contains all styles used in this project 
+    |   ├── .gitignore //Files to be ignored by git, such as node_modules
+    |   ├── App.tsx
+    |   ├── ParameterUtility.txt
+    |   ├── app.json
+    |   ├── babel.config.js
+    |   ├── package-lock.json   
+    |   ├── package.json //Holds all the necessary dependencies for this project
+    |   ├── tsconfig.json
+    |   ├── yarn.lock
+    ├── ecoflo_backend //Root folder of the backend 
+    |   ├── config //contains keys needed to connect to MongoDB database
+    |   ├── models //Contains schemas used in database, such as users and emissions
+    |   ├── routes
+    |   |   ├── api //contains all API endpoints and their respective logic
+    |   ├── tests //contains unit tests 
+    |   ├── .gitignore //ignores unecessary files, such as node modules
+    |   ├── package-lock.json
+    |   ├── package.json //contains all dependencies
+    |   ├── server.js //Server app that opens endpoints and connects to MongoDB
+    ├── README.md
+```
+
 
 ## API Endpoints Documentation
 Different API endpoints were created using Node.js and Express. The endpoints are hosted on the cloud provider [Heroku](https://www.heroku.com/). The following contains the API endpoints and their descriptions. None of the API endpoints require any keys. To see their responses for testing purposes, they can be called using any API tester such as [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/).
