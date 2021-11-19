@@ -76,7 +76,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
   * **Description:** This endpoint is used to login users. Creates new users and logins new users.
   * **Body:** 
     *  Request
-        ```
+        ```json
         {
             "username" : string,
             "password" : string,
@@ -84,7 +84,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
         }
         ```
     * Response 
-        ```
+        ```json
         {
             "success" : boolean,
             "type" : string,
@@ -99,7 +99,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
     * Request - No body. Parameters are queried in the URL as follows: 
       `https://loginapitest.herokuapp.com/api/user/picture?username=REPLACE_WITH_USERNAME`
     * Response
-      ```
+      ```json
         {
             "type" : string,
             "success" : boolean,
@@ -111,7 +111,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
   * **Description:** This endpoint is used to update a user's daily emissions
   * **Body:** 
       *  Request
-          ```
+          ```json
           {
               "username" : string,
               "emissions" : int,
@@ -119,7 +119,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
           }
           ```
       * Response 
-          ```
+          ```json
           {
               "type" : string,
               "success" : boolean
@@ -132,10 +132,10 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
     * Request - No body. Parameters are queried in the URL as follows:
       * `https://loginapitest.herokuapp.com/api/emissions/pastweek?username=REPLACE_WITH_USERNAME`
     * Response 
-      ```
+      ```json
       {
           "type" : string,
-          "success: : boolean,
+          "success": : boolean,
           "emissions" : Array of tuples contaning date and emissions
       }
       ```
@@ -144,7 +144,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
   * **Description:** Updates a user's weekly steps. Each week starts on the latest Sunday
   * **Body:**
     * Request 
-      ```
+      ```json
       {
           "username" : string,
           "date" : Date, 
@@ -152,7 +152,7 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
       }
       ```
     * Response
-      ```
+      ```json
       {
           "type" : string,
           "success" : boolean
@@ -164,10 +164,10 @@ Different API endpoints were created using Node.js and Express. The endpoints ar
   * **Body:**
     * Request - No body and no URL queries, simply calling the URL returns the data
     * Response
-      ```
+      ```json
       {
           "type" : string,
-          "success" : false,
+          "success" : boolean,
           "users" : array of usernames,
           "steps" : array of user steps
       }
@@ -180,6 +180,32 @@ the state of Florida. More information can be found at their respective websites
 * Florida Department of Environmental Protection Geospatial Open Data (Hazardous Waste Management)
   * https://geodata.dep.state.fl.us/datasets/hazardous-waste-transporter-facilities/api
 
+## Logins 
+For testing/demo purposes, the following account should be used to test the applicaton:
+* Username: admin
+* Password: admin
 
+## Troubleshooting
+Here are some tips to resolve common issues we encountered during development:
+* **Error:**
+  ```
+  npm start
+  npm ERR! missing script: start
+  npm ERR! A complete log of this run can be found in:
+  npm ERR!     /Users/loragonzaleze/.npm/_logs/2021-11-19T18_42_21_637Z-debug.log`
+  ```
+* **Solution:** This happens when the user attempts to run the application in the incorrect directory. Make sure you are in the correct directory by doing the following:
+  * Front-End: `cd ecoflo_FrontEnd`
+  * Back-End: `cd ecoflo_backend`
+  * You should be able to run `npm start` with no issues if you `cd` into the correct directory
+
+* **Error:** App is not running on Expo Go, will not open even if everything seems to be correct
+* **Solution:** 
+  * Expo Go can be buggy at time. To resolve this issue, try closing and reopening the Expo Go app. 
+  * If the above solution still doesn't work, delete the `node_modules` folder, and run `npm install`. This will rebuild the application and install the necessary dependencies
+  * If the above soltuion still doesn't help, make sure your phone is on the same network as the computer you are developing on. You can only access the application if you are on the same LAN
+  * If the above doesn't work, close the terminal/command line window you ran `npm start` on. Open a new terminal in the same folder, and run `npm start`. This will restart the application again on the LAN.
+  * If any of the previous solutions do not work, uninstall Expo Go and reinstall it again. This can happen due to something messing up with Expo Go.
+  
 
 
